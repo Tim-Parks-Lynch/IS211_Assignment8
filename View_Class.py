@@ -18,13 +18,16 @@ class View:
         elif self.view_type == "Start":
             v = StartView(self.view_type)
             return v
+        elif self.view_type == "Winner":
+            v = WinnerView(self.view_type)
+            return v
 
 
 class StartView(View):
     def __init__(self, view_type):
         super().__init__(view_type)
 
-    def game_start_view(self):
+    def view(self):
         print("\n********************************")
         print("*            Pig               *")
         print("*            Game              *")
@@ -35,7 +38,7 @@ class ScratchedView(View):
     def __init__(self, view_type):
         super().__init__(view_type)
 
-    def player_scratched_view(self, name):
+    def view(self, name):
         print("\n----------------------------------")
         print(f"{name} rolled a 1:                 ")
         print(f"{name} Scratched -- Switching Users")
@@ -46,7 +49,7 @@ class HeldView(View):
     def __init__(self, view_type):
         super().__init__(view_type)
 
-    def player_held_view(self, name):
+    def view(self, name):
         print("********************************")
         print(f"{name} Held")
         print("********************************\n")
@@ -56,7 +59,7 @@ class RolledView(View):
     def __init__(self, view_type):
         super().__init__(view_type)
 
-    def player_rolled_view(self, name, rolled, turn_total, player_total):
+    def view(self, name, rolled, turn_total, player_total):
         print(f"\n{name}'s Turn")
         print("----------------------------------")
         print(f"{name} Rolled a {rolled} ")
@@ -64,6 +67,16 @@ class RolledView(View):
         print(f"Possible total if held = {player_total + turn_total}")
         print(f"Player total before holding = {player_total}")
         print("----------------------------------\n\n")
+
+
+class WinnerView(View):
+    def __init__(self, view_type):
+        super().__init__(view_type)
+
+    def view(self, player):
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(f"{player.name} Wins!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 
 # if __name__ == "__main__":
