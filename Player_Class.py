@@ -2,7 +2,6 @@ from Dice_Class import Dice
 from View_Class import View
 
 
-# Think this will be the controller
 class Player:
     def __init__(self, name):
         self.name = name
@@ -21,9 +20,7 @@ class Player:
 class HumanPlayer(Player):
     def __init__(self, name):
         super().__init__(name)
-        self.dice = (
-            Dice()
-        )  # This might be an issue later, not really random if they both start off at seed 0
+        self.dice = Dice()
 
     def turn(self):
         turn_total = 0
@@ -44,6 +41,15 @@ class HumanPlayer(Player):
         if roll_or_hold == "h":
             self.total += turn_total
             held_view.view(self.name)
+
+
+class ComputerPlayer(Player):
+    def __init__(self, name):
+        super().__init__(name)
+        self.dice = Dice()
+
+    def turn(self):
+        turn_total = 0
 
 
 start_view = View("Start").create_view()

@@ -1,4 +1,4 @@
-# Think this will be the model
+# Think this will be the Controller
 from View_Class import View
 
 
