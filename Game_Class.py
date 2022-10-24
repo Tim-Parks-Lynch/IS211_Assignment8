@@ -10,9 +10,11 @@ class Game:
         self.current_player = self.players[0]
 
     def check_winner(self):
+        print("inside check winner")
         for player in self.players:
             if player.total >= 100:
                 self.winner = player
+                print(self.winner)
                 return True
         return False
 
@@ -40,38 +42,21 @@ class TimedGameProxy(Game):
         print("Checking Time")
         return (time_now - self.start_time).total_seconds() > self.time_limit
 
-    def check_winner(self, time_flag):
-        print(time_flag)
-        if time_flag is False:
-            super().check_winner()
-        elif time_flag is True:
-            print(time_flag)
-
-            self.winner = (
-                self.players[0]
-                if self.players[0].total > self.players[1].total
-                else self.players[1]
-            )
-            print(self.winner)
-            return True
-
     def play_game(self):
         time_flag = False
-        while not self.check_winner(time_flag) and not time_flag:
+        while not super().check_winner() and not time_flag:
             self.current_player.turn()
-            self.check_winner(time_flag)
+            super().check_winner()
             time_flag = self.check_time(datetime.now())
             self.change_player()
-            time_flag = self.check_time(datetime.now())
-        print(time_flag)
-        wv.view(self.winner)
-        # if time_flag is False:
-        #     return wv.view(self.winner)
-        # elif time_flag is True:
-        #     if self.players[0].total > self.players[1].total:
-        #         return wv.view(self.players[0])
-        #     else:
-        #         return wv.view(self.players[1])
+
+        if time_flag is False:
+            return wv.view(self.winner)
+        elif time_flag is True:
+            if self.players[0].total > self.players[1].total:
+                return wv.view(self.players[0])
+            else:
+                return wv.view(self.players[1])
 
 
 wv = View("Winner").create_view()
