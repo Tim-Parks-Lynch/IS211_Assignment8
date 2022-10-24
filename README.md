@@ -1,18 +1,15 @@
-Things to go over
+# IS211-Assignment8
 
-- Abstract Classes - why use them, and how
-- Static Methods - how to use them and why
-- Factory Method breakdown again
+Hi Professor,
 
-Go back and fix
+I struggled a little bit on this one. I tried to also use the MVC pattern as well and couldn't find out how to uncouple the view from the model. I also struggled with the Proxy pattern for the timed game. I'm not exactly sure what it's supposed to do, as the information I found online made it seem like it should be hiding something. That said my code does run with the following examples:
 
-- Winning Score should be a 100, lowered to 50 for testing
-- Winner View might be messed up
-- Human Player Turn() might need to return something else
-- Not sure if we need the boolean check in check_winner() in Game class
-- If change_player() works correctly change it to terinary statement
-- play_game() might need to return something for view to work correctly
+    python pig.py --player1 "C" --player2 "H" --timed "Y"
 
-I think my player class is my controller
-the game is the model
-and the view is the view
+I made timed a yes or no situation and then ask for the amount of game time if it is "Y".
+
+Please let me know if you have any issues or suggestions for the code.
+
+Thanks,
+
+Tim

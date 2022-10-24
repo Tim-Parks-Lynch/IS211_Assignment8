@@ -1,4 +1,3 @@
-# Think this will be the Controller
 from View_Class import View
 from datetime import datetime
 
@@ -10,11 +9,9 @@ class Game:
         self.current_player = self.players[0]
 
     def check_winner(self):
-        print("inside check winner")
         for player in self.players:
             if player.total >= 100:
                 self.winner = player
-                print(self.winner)
                 return True
         return False
 
@@ -39,7 +36,6 @@ class TimedGameProxy(Game):
         self.time_limit = time_limit
 
     def check_time(self, time_now):
-        print("Checking Time")
         return (time_now - self.start_time).total_seconds() > self.time_limit
 
     def play_game(self):
