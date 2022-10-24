@@ -50,6 +50,24 @@ class ComputerPlayer(Player):
 
     def turn(self):
         turn_total = 0
+        roll_or_hold = None
+
+        while roll_or_hold != "h":
+            roll = self.dice.roll_dice()
+            if roll > 1:
+                turn_total += roll
+                rolled_view.view(self.name, roll, turn_total, self.total)
+                if turn_total >= min(25, (100 - self.total)):
+                    self.total += turn_total
+                    roll_or_hold = "h"
+                    held_view.view(self.name)
+                    break
+            else:
+                turn_total = 0
+                scratched_view.view(self.name)
+                break
+        # while turn_total >= min(self.total, 100 - self.total):
+        #         continue
 
 
 start_view = View("Start").create_view()
